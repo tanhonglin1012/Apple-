@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in with your Apple ID</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #f5f5f7;
+        }
+        .apple-signin-container {
+            max-width: 400px;
+            margin: 80px auto 0 auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 2.5rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+        .apple-signin-logo {
+            width: 48px;
+            margin-bottom: 1.5rem;
+        }
+        .apple-signin-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1d1d1f;
+        }
+        .apple-signin-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        .apple-signin-form .buy-btn {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        .apple-signin-footer {
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: #86868b;
+        }
+        .apple-signin-footer a {
+            color: #0071e3;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="apple-signin-container">
+        <img src="img/Apple-Logo.png" alt="Apple Logo" class="apple-signin-logo">
+        <div class="apple-signin-title">Sign in with your Apple ID</div>
+        <form class="apple-signin-form" id="signin-form">
+            <input type="text" id="appleid" placeholder="Apple ID" autocomplete="username" required>
+            <input type="password" id="password" placeholder="Password" autocomplete="current-password" required>
+            <button type="submit" class="buy-btn">Sign In</button>
+        </form>
+        <div class="apple-signin-footer">
+            <a href="#">Forgot Apple ID or password?</a>
+        </div>
+        <div id="error-message" style="color:#e53935;margin-top:1rem;font-size:1rem;"></div>
+        <div style="margin-top:2rem;">
+            <a href="index.html" style="color:#0071e3;text-decoration:underline;font-size:1rem;">&#8592; Home</a>
+        </div>
+    </div>
+<script>
+document.getElementById('signin-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const appleid = document.getElementById('appleid').value.trim();
+    const password = document.getElementById('password').value;
+    const errorDiv = document.getElementById('error-message');
+    if (appleid === 'admin@gmail.com' && password === 'timcook') {
+        window.location.href = 'order.html';
+    } else {
+        errorDiv.textContent = 'Your Apple ID or password was incorrect.';
+    }
+});
+</script>
+</body>
+</html>

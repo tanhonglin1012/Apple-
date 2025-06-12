@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Apple Orders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #f5f5f7;
+        }
+        .order-container {
+            max-width: 700px;
+            margin: 80px auto 0 auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        .order-logo {
+            width: 48px;
+            display: block;
+            margin: 0 auto 1.5rem auto;
+        }
+        .order-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1d1d1f;
+            text-align: center;
+        }
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        .orders-table th, .orders-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        .orders-table th {
+            background: #f5f5f7;
+            font-weight: 600;
+        }
+        .orders-table tr:last-child td {
+            border-bottom: none;
+        }
+        .order-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #0071e3;
+            text-decoration: underline;
+            font-size: 1rem;
+        }
+        @media (max-width: 700px) {
+            .order-container {
+                padding: 1rem 0.5rem;
+            }
+            .orders-table th, .orders-table td {
+                font-size: 0.95rem;
+                padding: 8px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="order-container">
+        <img src="img/Apple-Logo.png" alt="Apple Logo" class="order-logo">
+        <div class="order-title">All Orders</div>
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Order Number</th>
+                    <th>Customer</th>
+                    <th>Model</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="orders-body">
+                <!-- Orders will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+        <a href="index.html" class="order-btn">&#8592; Back to Store</a>
+    </div>
+    <script>
+const defaultOrders = [
+    {
+        orderNumber: "#APPLE2025",
+        customer: "admin@gmail.com",
+        model: "Apple Watch Ultra 2",
+        quantity: "1",
+        status: "Processing"
+    },
+    {
+        orderNumber: "#APPLE2026",
+        customer: "jane@example.com",
+        model: "Apple Watch Series 9",
+        quantity: "2",
+        status: "Shipped"
+    },
+    {
+        orderNumber: "#APPLE2027",
+        customer: "john@icloud.com",
+        model: "Apple Watch Series 8",
+        quantity: "1",
+        status: "Delivered"
+    },
+    {
+        orderNumber: "#APPLE2028",
+        customer: "alice@apple.com",
+        model: "Apple Watch Series 10",
+        quantity: "1",
+        status: "Processing"
+    }
+];
+
+let orders = [];
+try {
+    orders = JSON.parse(localStorage.getItem('orders')) || [];
+} catch {
+    orders = [];
+}
+orders = orders.concat(defaultOrders);
+
+const tbody = document.getElementById('orders-body');
+tbody.innerHTML = orders.map(order => `
+    <tr>
+        <td>${order.orderNumber}</td>
+        <td>${order.customer}</td>
+        <td>${order.model}</td>
+        <td>${order.quantity}</td>
+        <td>${order.status}</td>
+    </tr>
+`).join('');
+</script>
+</body>
+</html>

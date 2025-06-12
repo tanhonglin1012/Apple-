@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Apple Watch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="nav container">
+            <a href="index.html" class="logo">
+                <img src="img/Apple-Logo.png" alt="Apple Logo" style="width:32px;height:32px;">
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="store.html" class="nav-link">Store</a>
+                <a href="#" class="nav-link">Support</a>
+            </div>
+        </nav>
+    </header>
+    <main class="container" style="margin-top:120px;max-width:600px;">
+        <h1 style="font-size:2.2rem;font-weight:700;margin-bottom:1.5rem;">Buy Apple Watch</h1>
+        <div style="background:#fafafa;border-radius:20px;padding:2rem 1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            <p style="font-size:1.2rem;margin-bottom:2rem;">Thank you for choosing Apple Watch.<br>
+            Please proceed with your purchase below.</p>
+            <form id="buy-form">
+                <label for="model" style="font-weight:600;">Model</label><br>
+                <select id="model" name="model" style="margin-bottom:1.5rem;width:100%;padding:0.7rem;border-radius:8px;border:1px solid #ccc;">
+                    <option>Apple Watch Ultra 2 - RM3799</option>
+                    <option>Apple Watch Series 10 - RM1799</option>
+                    <option>Apple Watch Series 9 - RM1199</option>
+                    <option>Apple Watch Series 8 - RM799</option>
+                    <option>Apple Watch Series 7 - RM599</option>
+                    <option>Apple Watch Series 5 - RM299</option>
+                    <option>Apple Watch Series 4 - RM199</option>
+                    <option>Apple Watch SE - RM999</option>
+                </select><br>
+                <label for="quantity" style="font-weight:600;">Quantity</label><br>
+                <input type="number" id="quantity" name="quantity" min="1" value="1" style="margin-bottom:1.5rem;width:100%;padding:0.7rem;border-radius:8px;border:1px solid #ccc;"><br>
+                
+                <hr style="margin:2rem 0;">
+                <div style="font-weight:600;margin-bottom:1rem;">Credit Card Information</div>
+                <label for="ccname" style="font-weight:500;">Name on Card</label><br>
+                <input type="text" id="ccname" name="ccname" required style="margin-bottom:1rem;width:100%;padding:0.7rem;border-radius:8px;border:1px solid #ccc;"><br>
+                <label for="ccnumber" style="font-weight:500;">Card Number</label><br>
+                <input type="text" id="ccnumber" name="ccnumber" maxlength="19" required style="margin-bottom:1rem;width:100%;padding:0.7rem;border-radius:8px;border:1px solid #ccc;"><br>
+                <div style="display:flex;gap:1rem;">
+                    <div style="flex:1;">
+                        <label for="ccexp" style="font-weight:500;">Expiry (MM/YY)</label><br>
+                        <input type="text" id="ccexp" name="ccexp" maxlength="5" required style="margin-bottom:1rem;width:100%;padding:0.7rem;border-radius:8px;border:1px solid #ccc;">
+                    </div>
+                    <div style="flex:1;">
+                        <label for="cccvv" style="font-weight:500;">CVV</label><br>
+                        <input type="text" id="cccvv" name="cccvv" maxlength="4" required style="margin-bottom:1rem;width:100%;padding:0.7rem;border-radius:8px;border:1px solid #ccc;">
+                    </div>
+                </div>
+                <button type="submit" class="buy-btn" style="width:100%;margin-top:1rem;">Proceed to Checkout</button>
+            </form>
+            <div id="success-message" style="display:none; color:#0071e3; font-size:1.15rem; text-align:center; margin-top:2rem;">
+                <strong>Success!</strong> Your order has been placed.<br>
+                <a href="index.html" id="home-link" style="color:#0071e3;text-decoration:underline;display:inline-block;margin-top:1.2rem;font-size:1rem;">&#8592; Home</a>
+            </div>
+        </div>
+        <p style="margin-top:2rem;text-align:center;">
+            <a href="store.html" style="color:#0071e3;text-decoration:underline;">&#8592; Back to Store</a>
+        </p>
+    </main>
+    <script>
+document.getElementById('buy-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Get form values
+    const model = document.getElementById('model').value;
+    const quantity = document.getElementById('quantity').value;
+    const ccname = document.getElementById('ccname').value;
+    // Generate a random order number
+    const orderNumber = '#APPLE' + (Math.floor(Math.random() * 9000) + 1000);
+    // For demo, use a placeholder email
+    const customer = ccname ? ccname : "guest@apple.com";
+    // Save order to localStorage
+    const newOrder = {
+        orderNumber,
+        customer,
+        model,
+        quantity,
+        status: "Processing"
+    };
+    let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+    orders.unshift(newOrder); // Add new order to the top
+    localStorage.setItem('orders', JSON.stringify(orders));
+    // Show success message and hide form
+    document.getElementById('buy-form').style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+});
+if (appleid === 'admin@gmail.com' && password === 'tim cook') {
+    window.location.href = 'order.html';
+}
+</script>
+</body>
+</html>
